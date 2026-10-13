@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+
+    <application
+        android:name=".SFApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_short_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Filewall"
+         >
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Filewall" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".logger.LogsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".confirm.DocumentConfirmationActivity"
+            android:alwaysRetainTaskState="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@style/Theme.Filewall.Dialog"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".auth.biometric.BiometricPlaceholderActivity"
+            android:alwaysRetainTaskState="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@style/Theme.Filewall.Dialog" />
+        <activity
+            android:name=".auth.pin.PinActivity"
+            android:alwaysRetainTaskState="true"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:theme="@style/Theme.Filewall.Dialog" />
+        <activity
+            android:name=".auth.AuthActivity"
+            android:exported="false"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".accesslogs.AccessLogsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".settings.auth.AuthenticationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".rules.add.AddRuleActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".docs.DocsViewerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+        <activity
+            android:name=".settings.legal.LegalActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Filewall" />
+
+        <provider
+            android:name=".provider.FilewallProvider"
+            android:authorities="org.androidlabs.filewall.provider"
+            android:exported="true"
+            android:enabled="true"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS" >
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+
+        <receiver android:name=".confirm.DocumentConfirmationReceiver" />
+
+        <receiver android:name=".auth.biometric.BiometricReceiver" />
+
+        <receiver android:name=".auth.pin.PinReceiver" />
+
+
+        <!--Only for logs sharing-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.file-provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver
+            android:name=".auth.DeviceLockReceiver"
+            android:exported="false">
+            <!--
+                LOCKED_BOOT_COMPLETED is gone: it is only delivered to a directBootAware
+                component, and this app is not one, so it could never arrive. REBOOT is
+                gone too - it is sent on the way down, not on the way up, and the receiver
+                never acted on it. The quickboot variants some devices send instead of
+                BOOT_COMPLETED are kept, and now handled.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.htc.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

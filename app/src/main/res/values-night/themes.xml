@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The window theme is drawn before Compose, so it has to follow the system dark mode
+         itself, or every cold start in dark mode flashes white. -->
+    <style name="Theme.Filewall" parent="android:Theme.Material.NoActionBar" />
+    <style name="Theme.Filewall.Dialog" parent="android:Theme.Material.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>

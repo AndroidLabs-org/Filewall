@@ -1,0 +1,25 @@
+Filewall
+Copyright (C) 2026 AndroidLabs-org
+
+Filewall is free software, licensed under the GNU General Public License v3 (see LICENSE).
+
+It includes the following third-party libraries, each used under the Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0):
+
+  - AndroidX (core, lifecycle, activity, fragment, navigation, recyclerview, datastore,
+    biometric, security-crypto) - The Android Open Source Project
+  - Jetpack Compose (ui, material, material3, runtime, material-icons-extended) -
+    The Android Open Source Project
+  - Accompanist (drawablepainter) - Google LLC
+  - Reorderable (sh.calvin.reorderable) - Calvin Liang
+  - Kotlin and kotlinx.coroutines - JetBrains s.r.o. and Kotlin contributors
+
+The classes in app/src/main/java/org/androidlabs/filewall/logger/ (LogNode, LogWrapper,
+MessageOnlyLogFilter, Log, LogFragment) are adapted from the Android "Common Logger" sample,
+Copyright (C) The Android Open Source Project, under the Apache License 2.0.
+
+The exact versions are listed in gradle/libs.versions.toml. No library in the app talks to a
+network: the app declares no INTERNET permission.
+
+The launcher icon and the store screenshots were created by AndroidLabs and are released under
+the same licence as the app, the GNU General Public License v3.

@@ -1,0 +1,23 @@
+Filewall is a firewall for your files. It is a document provider built on Android's Storage Access Framework (SAF): files live in the app's own private storage, and every other app that wants to read, write or list them has to go through Filewall's rules.
+
+How access is gated:
+* The system's own SAF grant, as for any document provider.
+* An optional PIN, with fingerprint or face unlock if you like. Turn it on in Settings.
+* Your rules, evaluated top to bottom - the first match applies, like a firewall.
+
+Key features:
+* Rules per app, per folder or per file: allow read, write or list, block, or extend a rule to subfolders.
+* Time-limited rules that expire on their own.
+* When an app asks for something no rule covers, you get a request to allow or block it - one decision can answer a whole batch of requests.
+* An optional access log that records what each app tried and why it was allowed or denied. It can be filtered and exported as CSV, and it can be switched off.
+* No account, no analytics and no network access: Filewall does not declare the Internet permission. No root needed.
+
+Permissions the app declares, and why:
+* POST_NOTIFICATIONS - to tell you about access requests and blocked access (optional).
+* USE_BIOMETRIC - fingerprint or face unlock in addition to the PIN (optional).
+* RECEIVE_BOOT_COMPLETED - ends any open authentication session when the device restarts.
+* QUERY_ALL_PACKAGES - lists your installed apps when you create a rule and shows the name and icon of the app asking for access. Nothing is stored or sent anywhere.
+
+IMPORTANT: Filewall controls and restricts access; it does not encrypt your files. If you need encryption, combine it with an encryption tool. Threat model: it protects against unauthorized app access and accidental exposure on an unlocked device, not against root access or forensic tools.
+
+Free software, GNU General Public License v3.

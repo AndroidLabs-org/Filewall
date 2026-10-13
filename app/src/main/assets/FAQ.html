@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="doc.css">
+  <title>FAQ</title>
+</head>
+<body>
+  <h1>Frequently Asked Questions</h1>
+
+  <details>
+    <summary>What is Filewall?</summary>
+    <p><strong>Filewall: Secure Storage Provider</strong> is an Android app that acts as a <em>firewall for your files</em>. It gives you full control over which apps can access specific files or folders on your device using Android's official <strong>Storage Access Framework (SAF)</strong>.</p>
+  </details>
+
+  <details>
+    <summary>Does Filewall encrypt my files?</summary>
+    <p>No. Filewall does <strong>not use encryption</strong>. Instead, it relies on <em>access control rules</em> and Android’s SAF to restrict which apps can read, write, or list files within a designated secure storage area.</p>
+  </details>
+
+  <details>
+    <summary>How does Filewall protect my files?</summary>
+    <p>You define <strong>per-app rules</strong> to allow or deny read, write, or list access to folders selected via SAF. You can also set <strong>temporary access</strong>, block apps entirely, and receive <strong>notifications</strong> when an app tries to access protected data.</p>
+  </details>
+
+  <details>
+    <summary>How do I allow subfolder creation in SAF?</summary>
+    <p>Unlike a traditional file system, the Storage Access Framework (SAF) requires explicit permissions for each folder before you can create or modify it — even if that folder doesn’t yet exist. This means that having full permissions (without <em>Extend permissions to subfolders</em> enabled) for a parent folder does not automatically grant you the ability to create or change subfolders within it. In other words, folders inside a parent folder are treated independently from the files in that same parent folder. If you attempt to create a subfolder without first granting permissions to that specific folder, the operation will fail. Once permission is approved, repeating the action will succeed. As an alternative, you can temporarily enable <em>Extend permissions to subfolders</em> on the parent folder or temporarily disable filewall protections entirely (though this is not recommended unless the application needs to create complex dynamic filesystem structures during setup which would otherwise require multiple approvals that would break the app's initialization process). Note that a write permission on a folder is also permission to delete it: the folder goes along with all its subfolders and files, including items that have no rule of their own. A delete is checked against the item being deleted, not its parent, so deleting a subfolder that the parent's grant does not reach raises its own request first — unless <em>Extend permissions to subfolders</em> is on for the parent, in which case the app can delete it without being asked again.</p>
+  </details>
+
+  <details>
+    <summary>What is Silence Mode?</summary>
+    <p><strong>Silence Mode</strong> allows you to <em>use Filewall without interruptions</em>. When enabled, Filewall will <strong>not display dialog boxes or notifications</strong> when an external app tries to access a protected folder. Access attempts are still enforced and logged silently.</p>
+  </details>
+
+  <details>
+    <summary>How do I allow or deny access to a folder?</summary>
+    <p>You can control access in two ways:</p>
+    <ul>
+      <li><strong>Reactive method:</strong> Open the folder from the external app. Filewall will log the request and display it in the <em>Requests</em> tab, where you can approve or deny it.</li>
+      <li><strong>Manual method:</strong> Create a rule directly in Filewall by selecting the app and folder and defining the appropriate permissions (read, write, list, or block).</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Why should I grant full permissions on first setup?</summary>
+    <p>When selecting Filewall as a document provider for a <strong>new app</strong>—especially one that will <em>write</em> to the storage—it's recommended to initially <strong>grant all permissions</strong>, including <em>Extend permissions to subfolders</em>.</p>
+    <p>This ensures the app can complete setup operations like directory creation. Once initialized, you can safely reduce permissions according to your needs.</p>
+  </details>
+
+  <details>
+    <summary>Does Filewall require root?</summary>
+    <p><strong>No.</strong> Filewall works entirely within Android’s standard APIs. No root or special device configuration is required.</p>
+  </details>
+
+  <details>
+    <summary>Is my authentication data secure?</summary>
+    <p>Filewall uses Android's <strong>Keystore system</strong> to securely store PIN and biometric authentication data. Your credentials never leave the device.</p>
+  </details>
+
+  <details>
+    <summary>Does Filewall connect to the internet or send data?</summary>
+    <p><strong>No.</strong> Filewall does not require internet access and never collects or transmits any user data. Everything remains strictly on your device.</p>
+  </details>
+
+  <details>
+    <summary>What kind of logs does Filewall keep?</summary>
+    <p>Filewall keeps an <strong>access log</strong> locally on your device: attempts by apps to read, write, or list files, and whether each was allowed or denied. Access logging is optional and can be switched off in Settings. Changes you make to your rules are not logged.</p>
+  </details>
+
+  <details>
+    <summary>Is Filewall safe for children?</summary>
+    <p>Filewall is <strong>not intended for users under 13</strong>. It is a technical tool meant for users who understand Android’s file system and permission model.</p>
+  </details>
+
+  <details>
+    <summary>Where is Filewall available?</summary>
+    <p>Filewall is available globally through open-source Android platforms like <strong>F-Droid</strong>. There are no regional restrictions.</p>
+  </details>
+
+  <details>
+    <summary>Is Filewall open source?</summary>
+    <p>Yes! Filewall is fully open source and maintained by <strong>AndroidLabs</strong>. You can view the source code in our <a href="https://github.com/AndroidLabs-org/Filewall">GitHub repository</a>. Bug reports and suggestions are welcome as issues.</p>
+  </details>
+
+  <details>
+    <summary>How can I report bugs or suggest features?</summary>
+    <p>You can reach us at: <a href="mailto:info@androidlabs.org">info@androidlabs.org</a><br>
+    Or open an issue on the <a href="https://github.com/AndroidLabs-org/Filewall/issues">GitHub project page</a>.</p>
+  </details>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- The window theme is drawn before Compose, so it has to follow the system dark mode
+         itself, or every cold start in dark mode flashes white. -->
+    <!-- Android 12+ draws the system splash screen from this theme and shows only the icon's
+         foreground, which is black: it needs the launcher's white background behind it. -->
+    <style name="Theme.Filewall" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/ic_launcher_background</item>
+    </style>
+    <style name="Theme.Filewall.Dialog" parent="android:Theme.Material.Dialog.Alert">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>

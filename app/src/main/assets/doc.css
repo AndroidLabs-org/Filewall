@@ -1,0 +1,110 @@
+/* Shared styling for the bundled legal and FAQ documents.
+   Follows the system theme so the documents match the app instead of opening
+   as a white page under a dark toolbar. */
+
+:root {
+  --bg: #ffffff;
+  --ink: #1b1b1f;
+  --ink-muted: #44464f;
+  --rule: #d6d6de;
+  --surface: #f4f4f8;
+  --accent: #3c5bd6;
+}
+
+/* The app sets data-theme explicitly: inside a WebView prefers-color-scheme follows the
+   WebView's own dark state rather than the system theme, so the media query alone is not
+   enough. It is kept so the files also read correctly opened outside the app. */
+:root[data-theme="dark"] {
+  --bg: #131318;
+  --ink: #e5e1e9;
+  --ink-muted: #c7c5d0;
+  --rule: #2e2e38;
+  --surface: #1d1d24;
+  --accent: #aec6ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131318;
+    --ink: #e5e1e9;
+    --ink-muted: #c7c5d0;
+    --rule: #2e2e38;
+    --surface: #1d1d24;
+    --accent: #aec6ff;
+  }
+}
+
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 24px 20px 48px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, Roboto, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: 1.5em;
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 1.15em;
+  line-height: 1.3;
+  margin: 28px 0 8px;
+}
+
+p, li {
+  color: var(--ink-muted);
+}
+
+ul, ol {
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+strong {
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 28px 0;
+}
+
+/* FAQ accordions */
+details {
+  margin-bottom: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 10px 12px;
+}
+
+summary {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.02em;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+details p {
+  margin-bottom: 0;
+}

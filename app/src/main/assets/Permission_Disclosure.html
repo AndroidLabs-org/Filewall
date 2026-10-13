@@ -1,0 +1,56 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="doc.css">
+<title>Permission Disclosure</title></head><body>
+<h1>Permission Disclosure – Filewall: Secure Storage Provider</h1>
+<p>Every Android permission the installed app declares is listed below, including the ones
+contributed by the libraries it is built on. Nothing here is used to transmit or share your
+data externally.</p>
+
+<h2>Permissions the app requests</h2>
+<ul>
+<li><strong>POST_NOTIFICATIONS</strong><br>
+Notifies you when an app asks for access to a protected folder, and carries the approve and
+deny actions for that request.</li>
+
+<li><strong>USE_BIOMETRIC</strong> and <strong>USE_FINGERPRINT</strong><br>
+Restrict access to the Filewall interface itself. <code>USE_FINGERPRINT</code> is the
+pre-Android 9 name for the same capability and is contributed by
+<code>androidx.biometric</code>; the app uses whichever one the device supports. Credentials
+are held by Android's Keystore and never leave the device.</li>
+
+<li><strong>RECEIVE_BOOT_COMPLETED</strong><br>
+Lets the app learn that the device has restarted so it can drop every authorisation granted
+before the reboot. Access has to be re-approved after a restart rather than surviving it.</li>
+
+<li><strong>QUERY_ALL_PACKAGES</strong><br>
+Reads the name and icon of the app behind a request, so a rule can say
+<em>Files</em> rather than <code>com.google.android.documentsui</code>, and so the app
+picker in Add rule can list the apps installed on the device. Only the label and the icon
+are read; no package list is stored or sent anywhere.</li>
+</ul>
+
+<h2>Permissions defined for the app</h2>
+<ul>
+<li><strong>&lt;package&gt;.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION</strong><br>
+Declared by <code>androidx.core</code> at <code>signature</code> protection level. It exists
+so that broadcast receivers the app registers at runtime can only be reached by the app
+itself. No other app can hold it.</li>
+</ul>
+
+<h2>Permission the app enforces</h2>
+<ul>
+<li><strong>MANAGE_DOCUMENTS</strong><br>
+The storage provider is declared with
+<code>android:permission="android.permission.MANAGE_DOCUMENTS"</code>, so only the Android
+system may bind to it and other apps must go through the Storage Access Framework. This is a
+restriction the app imposes on itself — it is not a permission the app holds or can be
+granted.</li>
+</ul>
+
+<h2>Storage Access Framework</h2>
+<p>Filewall reaches your files only through the folders you pick with the system file picker.
+Those grants are issued by Android to Filewall, are visible under the picker's own
+permissions, and are not a manifest permission.</p>
+</body></html>

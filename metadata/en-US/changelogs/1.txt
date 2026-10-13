@@ -1,0 +1,5 @@
+First public release.
+* SAF document provider backed by the app's private storage.
+* Per-app, per-folder and per-file rules, with time limits and block rules.
+* App PIN with throttling, optional biometric unlock, screenshots blocked on protected screens.
+* Access requests with batch decisions, and an optional filterable, exportable access log.

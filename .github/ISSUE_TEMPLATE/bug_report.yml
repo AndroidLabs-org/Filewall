@@ -1,0 +1,34 @@
+name: Bug report
+description: Something in Filewall does not work as described
+labels: [bug]
+body:
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: The APK file name, or Android Settings -> Apps -> Filewall (for example 1.0.0)
+    validations:
+      required: true
+  - type: input
+    id: android
+    attributes:
+      label: Android version and device
+      placeholder: Android 14, Pixel 6
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+      description: Steps to reproduce, the rule you had set, and which app asked for the file.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optional)
+      description: Read them before pasting. They can contain file and app names.
+  - type: markdown
+    attributes:
+      value: |
+        Please do not include your PIN. A feature request or a question is welcome too, just say so in the first line.
